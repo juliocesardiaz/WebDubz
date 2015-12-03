@@ -16,4 +16,4 @@ Route::get('/', function () {
 });
 
 //Track Routes... 
-Route::get('/tracks', 'TrackController@')
+Route::get('/tracks', 'TrackController@');
