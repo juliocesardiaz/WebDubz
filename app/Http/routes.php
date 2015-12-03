@@ -17,4 +17,4 @@ Route::get('/', function () {
 
 //Track Routes... 
 Route::get('/tracks', 'TrackController@');
-Route::post('/track', 'TrackController@');
+Route::post('/track', 'TrackController@store');
