@@ -1,44 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
-
+        <title>Webdubz</title>
+        <link rel="stylesheet" href="css/skeleton-2.0.4/css/skeleton.css">
+		<link rel="stylesheet" href="css/skeleton-2.0.4/css/normalize.css">
+        <link rel="stylesheet" href="css/homepage.css">
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Webdubz</div>
+            </div>
+            <div class="row">
+                <div class="six columns">
+                    <form action="/upload">
+                        <input type="submit" value="Upload a Track">
+                    </form>
+                </div>
+                <div class="six columns">
+                    <form action="/tracks">
+                        <input type="submit" value="Explore Dubz">
+                    </form>
+                </div>
             </div>
         </div>
     </body>

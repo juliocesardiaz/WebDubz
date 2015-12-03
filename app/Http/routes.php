@@ -12,9 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
 
 //Track Routes... 
 Route::get('/tracks', 'TrackController@');
 Route::post('/track', 'TrackController@store');
+Route::get('/upload', function() {
+    return view('upload');
+});
