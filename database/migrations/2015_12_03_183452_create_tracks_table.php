@@ -12,7 +12,16 @@ class CreateTracksTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('tracks', function (Blueprint $table) {
+           $table->increments('id');
+           $table->string('title', 255);
+           $table->string('artist', 255);
+           $table->string('path_lq', 255);
+           $table->string('path_hq', 255);
+           $table->integer('max_downloads');
+           $table->integer('current_downloads');
+           $table->timestamps(); 
+        });
     }
 
     /**
@@ -22,6 +31,6 @@ class CreateTracksTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('tracks');
     }
 }
