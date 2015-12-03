@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 //Track Routes... 
 Route::get('/tracks', 'TrackController@');
+Route::post('/track', 'TrackController@');
