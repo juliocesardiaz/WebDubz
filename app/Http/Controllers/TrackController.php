@@ -12,14 +12,21 @@ use Symfony\Component\Process\Process;
 class TrackController extends Controller
 {
     /**
-      *
-      */
+     *
+     */
       protected $tracks;
     
-    // TODO: Finish file upload function 
     /**
-      *
-      */
+     *
+     */
+     public function uploadPage()
+     {
+           return view('upload');
+     } 
+    
+    /**
+     *
+     */
       public function store(Request $request)
       {
           $this->validate($request, [
