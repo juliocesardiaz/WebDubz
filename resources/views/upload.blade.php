@@ -4,6 +4,7 @@
     <div class="row">
         <div class="twelve columns">
             <form action="/track" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
                 
                 <label for="title">Title:</label>
                 <input type="text" name="title" id="title">
@@ -22,6 +23,7 @@
                 <label for="track">Select Track for Upload: </label>
                 <input type="file" name="track" id="track">
                 
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="submit" value="Upload Track" name="submit">
             </form>
         </div>
