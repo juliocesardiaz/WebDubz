@@ -19,7 +19,7 @@
                     </form>
                 </div>
                 <div class="six columns">
-                    <form action="/tracks">
+                    <form action="/dubz">
                         <input type="submit" value="Explore Dubz">
                     </form>
                 </div>

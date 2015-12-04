@@ -49,11 +49,11 @@ class TrackController extends Controller
               
           if ($request->file('track')->isValid()) {
             $file_name = $request->input('artist') . "_" .$request->input('title') . "_hq." . $request->file('track')->getClientOriginalExtension();
-            $hq_path = public_path().'/tracks/hq/';
-            $lq_path = public_path().'/tracks/lq/' . $request->input('artist') . "_" .$request->input('title') . "_lq." . 'mp3';
-            $request->file('track')->move($hq_path, $file_name);
+            $hq_path = '/tracks/hq/';
+            $lq_path = '/tracks/lq/' . $request->input('artist') . "_" .$request->input('title') . "_lq." . 'mp3';
+            $request->file('track')->move(public_path().$hq_path, $file_name);
             $hq_path .= $file_name;
-            $convert = new Process('ffmpeg -i '. $hq_path . ' -vn -ar 44100 -ac 2 -ab 128k -f mp3 ' . $lq_path);
+            $convert = new Process('ffmpeg -i '. public_path().$hq_path . ' -vn -ar 44100 -ac 2 -ab 128k -f mp3 ' . public_path().$lq_path);
             $convert->run();
               
           }
@@ -67,6 +67,6 @@ class TrackController extends Controller
           $track->current_downloads = 0;
           $track->save();
           
-          return redirect('/tracks');
+          return redirect('/dubz');
       }
 }

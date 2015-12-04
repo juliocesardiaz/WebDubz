@@ -16,6 +16,6 @@ Route::get('/', function () {
 });
 
 //Track Routes... 
-Route::get('/tracks', 'TrackController@index');
+Route::get('/dubz', 'TrackController@index');
 Route::post('/track', 'TrackController@store');
 Route::get('/upload', 'TrackController@uploadPage');
