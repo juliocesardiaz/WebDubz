@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="row">
+        
+        <!-- Display Validation Errors -->
+        @include('common.errors')
+        
         <div class="twelve columns">
             <form action="/track" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
