@@ -25,8 +25,8 @@ class TrackController extends Controller
      } 
      
      /**
-     *
-     */
+      *
+      */
      public function index(Request $request)
      {
            $tracks = Track::get();
@@ -68,5 +68,13 @@ class TrackController extends Controller
           $track->save();
           
           return redirect('/dubz');
+      }
+      
+      /**
+      *
+      */
+      public function download(Request $request, Track $track)
+      {
+            return response()->download(public_path().$track->path_hq);
       }
 }
