@@ -23,6 +23,18 @@ class TrackController extends Controller
      {
            return view('upload');
      } 
+     
+     /**
+     *
+     */
+     public function index(Request $request)
+     {
+           $tracks = Track::get();
+           
+           return view('tracks', [
+                 'tracks' => $tracks,
+           ]);
+     }
     
     /**
      *
@@ -55,6 +67,6 @@ class TrackController extends Controller
           $track->current_downloads = 0;
           $track->save();
           
-          return redirect('/');
+          return redirect('/tracks');
       }
 }
