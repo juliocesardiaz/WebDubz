@@ -6,6 +6,7 @@ use App\Track;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Process\Process;
 
 class TrackController extends Controller
@@ -28,9 +29,9 @@ class TrackController extends Controller
         //   ]);
               
           if ($request->file('track')->isValid()) {
-              $file_name = $request->input('artist') . "_" .$request->input('title') . "_hq." . $request->file('track')->getExtension();
+              $file_name = $request->input('artist') . "_" .$request->input('title') . "_hq." . $request->file('track')->getClientOriginalExtension();
             $hq_path = public_path().'/tracks/hq';
-            $request->file('track')->move($hq_path, $request->getFileName());
+            $request->file('track')->move($hq_path, $file_name);
             $convert = new Process('touch ' . $file_name);
             $convert->run();
               
