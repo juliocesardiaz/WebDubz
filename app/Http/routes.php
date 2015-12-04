@@ -19,3 +19,4 @@ Route::get('/', function () {
 Route::get('/dubz', 'TrackController@index');
 Route::post('/track', 'TrackController@store');
 Route::get('/upload', 'TrackController@uploadPage');
+Route::get('/dubz/dowload/{id}', 'TrackController@download')

@@ -11,11 +11,16 @@
                 <div class="three columns">
                     <h5>{{ $track->title }} - {{ $track->artist }}</h5>
                 </div>
-                <div class="six columns">
+                <div class="six columns" id="{{ $track->title }}">
                     <audio controls preload="metadata">
                         <source src={{ $track->path_lq }} type="audio/mpeg">
                         Your browser does not support the audio tag.
                     </audio>
+                </div>
+                <div class="three columns">
+                    <form action="/upload">
+                        <input type="submit" value="Download">
+                    </form>
                 </div>
             @endforeach
         @else
