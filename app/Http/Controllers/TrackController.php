@@ -19,6 +19,13 @@ class TrackController extends Controller
     /**
      *
      */
+     public function welcome()
+     {
+           return view('welcome');
+     }
+    /**
+     *
+     */
      public function uploadPage()
      {
            return view('upload');
@@ -48,9 +55,10 @@ class TrackController extends Controller
           ]);
               
           if ($request->file('track')->isValid()) {
-            $file_name = $request->input('artist') . "_" .$request->input('title') . "_hq." . $request->file('track')->getClientOriginalExtension();
+            $temp_filename = str_replace(" ", "", strtolower($request->input('artist')) . "_" .strtolower($request->input('title')));
+            $file_name = $temp_filename . "_hq." . $request->file('track')->getClientOriginalExtension();
             $hq_path = '/tracks/hq/';
-            $lq_path = '/tracks/lq/' . $request->input('artist') . "_" .$request->input('title') . "_lq." . 'mp3';
+            $lq_path = '/tracks/lq/' . $temp_filename . "_lq." . 'mp3';
             $request->file('track')->move(public_path().$hq_path, $file_name);
             $hq_path .= $file_name;
             $convert = new Process('ffmpeg -i '. public_path().$hq_path . ' -vn -ar 44100 -ac 2 -ab 128k -f mp3 ' . public_path().$lq_path);
