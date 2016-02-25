@@ -30,7 +30,7 @@ The idea of **Webdubz** is to help users share demos, edits and remixes also kno
 
 ## Technologies used
 
-PHP, Laravel, HTML, CSS, JavaScript, Bootstrap, MySQL
+PHP, Laravel, FFmpeg, HTML, CSS, JavaScript, Bootstrap, MySQL.
 
 ## Legal
 
