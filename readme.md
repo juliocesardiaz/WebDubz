@@ -1,12 +1,12 @@
 # Webdubz
 
-##### A Web App to share music 
+##### A Web App to share music.
 
 #### Julio Diaz
 
 ## Description
 
-The idea of **Webdubz** is to help users share demos, edits and remixes or "Dubs". 
+The idea of **Webdubz** is to help users share demos, edits and remixes also known as "Dubs". 
 
 ### Key characteristics
 * Mobile responsive web application.
