@@ -4,4 +4,6 @@ Homestead.yaml
 Homestead.json
 .env
 /public/tracks/hq/*
+!/public/tracks/hq/*.txt
 /public/tracks/lq/*
+!/public/tracks/lq/*.txt
