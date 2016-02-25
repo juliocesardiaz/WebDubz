@@ -4,7 +4,7 @@
         <title>Webdubz</title>
         <link rel="stylesheet" href="css/skeleton-2.0.4/css/skeleton.css">
 		<link rel="stylesheet" href="css/skeleton-2.0.4/css/normalize.css">
-        <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/style.css">
     </head>
     
     <body>
