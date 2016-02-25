@@ -25,7 +25,9 @@ The idea of **Webdubz** is to help users share demos, edits and remixes also kno
 * Clone the project using the link provided on Github.
 * Run composer install in Terminal from the project root folder.
 * Download and install [FFmpeg](https://www.ffmpeg.org) (I recommend using Homebrew if on Mac).
-* From the project root folder in Terminal enter command ```php artisan serve```.
+* Setup env file so that Laravel knows where and how to access your database.
+* From the project root folder in Terminal run command```php artisan migrate```.
+* From the project root folder in Terminal run command ```php artisan serve```.
 * Open a web browser and navigate to ```localhost:8000```.
 
 ## Technologies used
