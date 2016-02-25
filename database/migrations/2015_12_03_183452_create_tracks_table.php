@@ -12,7 +12,8 @@ class CreateTracksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tracks', function (Blueprint $table) {
+        Schema::create('tracks', function (Blueprint $table) 
+        {
            $table->increments('id');
            $table->string('title', 255);
            $table->string('artist', 255);
@@ -21,6 +22,10 @@ class CreateTracksTable extends Migration
            $table->integer('max_downloads');
            $table->integer('current_downloads');
            $table->timestamps(); 
+        });
+        Schema::table('tracks', function($table)
+        {
+           $table->boolean('converted')->after('current_downloads');
         });
     }
 
