@@ -38,7 +38,7 @@ class TrackController extends Controller
       */
      public function index(Request $request)
      {
-           $tracks = DB::table('tracks')->where('converted', '=', 1)->get();
+           $tracks = DB::table('tracks')->where('converted', '=', 1)->orderBy('id', 'desc')->get();
            
            return view('tracks', [
                  'tracks' => $tracks,
