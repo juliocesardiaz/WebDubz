@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Track;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class TrackController extends Controller
       */
      public function index(Request $request)
      {
-           $tracks = Track::get();
+           $tracks = DB::table('tracks')->where('converted', '=', 1)->get();
            
            return view('tracks', [
                  'tracks' => $tracks,
