@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Track;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Jobs\ConvertHQTracks;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Process\Process;
@@ -60,10 +61,7 @@ class TrackController extends Controller
             $hq_path = '/tracks/hq/';
             $lq_path = '/tracks/lq/' . $temp_filename . "_lq." . 'mp3';
             $request->file('track')->move(public_path().$hq_path, $file_name);
-            $hq_path .= $file_name;
-            $convert = new Process('ffmpeg -i '. public_path().$hq_path . ' -vn -ar 44100 -ac 2 -ab 128k -f mp3 ' . public_path().$lq_path);
-            $convert->run();
-              
+            $hq_path .= $file_name;              
           }
           
           $track = new Track;
@@ -73,9 +71,13 @@ class TrackController extends Controller
           $track->path_hq = $hq_path;
           $track->max_downloads = $request->input('max_downloads');
           $track->current_downloads = 0;
+          $track->converted = 0;
           $track->save();
+          $job = (new ConvertHQTracks($track));
+          $this->dispatch($job);
           
           return redirect('/dubz');
+          
       }
       
       /**
