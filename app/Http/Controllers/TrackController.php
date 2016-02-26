@@ -40,9 +40,7 @@ class TrackController extends Controller
      {
            $tracks = DB::table('tracks')->where('converted', '=', 1)->orderBy('id', 'desc')->get();
            
-           return view('tracks', [
-                 'tracks' => $tracks,
-           ]);
+           return response()->json(['tracks' => $tracks]);
      }
     
     /**
