@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use App\Jobs\ConvertHQTracks;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Process\Process;
 
 class TrackController extends Controller
 {
@@ -40,7 +39,7 @@ class TrackController extends Controller
      {
            $tracks = DB::table('tracks')->where('converted', '=', 1)->orderBy('id', 'desc')->get();
            
-           return response()->json(['tracks' => $tracks]);
+           return response()->json(['tracks' => $tracks], 200);
      }
     
     /**
@@ -57,9 +56,9 @@ class TrackController extends Controller
           if ($request->file('track')->isValid()) {
             $temp_filename = str_replace(" ", "", strtolower($request->input('artist')) . "_" .strtolower($request->input('title')));
             $file_name = $temp_filename . "_hq." . $request->file('track')->getClientOriginalExtension();
-            $hq_path = '/tracks/hq/';
-            $lq_path = '/tracks/lq/' . $temp_filename . "_lq." . 'mp3';
-            $request->file('track')->move(public_path().$hq_path, $file_name);
+            $hq_path = public_path().'/tracks/hq/';
+            $lq_path = public_path().'/tracks/lq/' . $temp_filename . "_lq." . 'mp3';
+            $request->file('track')->move($hq_path, $file_name);
             $hq_path .= $file_name;              
           }
           
@@ -75,8 +74,7 @@ class TrackController extends Controller
           $job = (new ConvertHQTracks($track));
           $this->dispatch($job);
           
-          return redirect('/dubz');
-          
+          return redirect('api/v1/dubz');
       }
       
       /**

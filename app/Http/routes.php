@@ -13,8 +13,11 @@
 
 Route::get('/', 'TrackController@welcome');
 
-//Track Routes... 
-Route::get('/dubz', 'TrackController@index');
+//Track Routes...
+Route::group(['prefix' => 'api/v1', 'middleware' => 'cors'], function () {
+    Route::get('/dubz', 'TrackController@index');
+});
+// Route::get('/dubz', 'TrackController@index');
 Route::post('/track', 'TrackController@store');
 Route::get('/upload', 'TrackController@uploadPage');
 Route::get('/dubz/dowload/{track}', 'TrackController@download');
