@@ -56,9 +56,9 @@ class TrackController extends Controller
           if ($request->file('track')->isValid()) {
             $temp_filename = str_replace(" ", "", strtolower($request->input('artist')) . "_" .strtolower($request->input('title')));
             $file_name = $temp_filename . "_hq." . $request->file('track')->getClientOriginalExtension();
-            $hq_path = public_path().'/tracks/hq/';
-            $lq_path = public_path().'/tracks/lq/' . $temp_filename . "_lq." . 'mp3';
-            $request->file('track')->move($hq_path, $file_name);
+            $hq_path = '/tracks/hq/';
+            $lq_path = '/tracks/lq/' . $temp_filename . "_lq." . 'mp3';
+            $request->file('track')->move(public_path() . $hq_path, $file_name);
             $hq_path .= $file_name;              
           }
           
@@ -80,8 +80,9 @@ class TrackController extends Controller
       /**
       *
       */
-      public function download(Request $request, Track $track)
+      public function download(Request $request, $trackId)
       {
-            return response()->download(public_path().$track->path_hq);
+            $track = DB::table('tracks')->where('id', '=', $trackId)->get();
+            return response()->download(public_path() . $track->path_hq);
       }
 }

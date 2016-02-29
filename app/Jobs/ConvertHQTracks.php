@@ -26,7 +26,7 @@ class ConvertHQTracks extends Job implements SelfHandling
      */
     public function handle()
     {
-        $convert = new Process('ffmpeg -i '. $this->track->path_hq . ' -vn -ar 44100 -ac 2 -ab 128k -f mp3 ' . $this->track->path_lq);
+        $convert = new Process('ffmpeg -i '. public_path() . $this->track->path_hq . ' -vn -ar 44100 -ac 2 -ab 128k -f mp3 ' . public_path() . $this->track->path_lq);
         $convert->run();
         $this->track->converted = 1;
         $this->track->save();
