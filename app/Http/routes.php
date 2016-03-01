@@ -14,10 +14,10 @@
 Route::get('/', 'TrackController@welcome');
 
 //Track Routes...
-Route::group(['prefix' => 'api/v1', 'middleware' => 'cors'], function () {
+Route::group(['prefix' => 'api/v1'], function () {
     Route::get('/dubz', 'TrackController@index');
     Route::get('/dowload/{trackId}', 'TrackController@download');
-    Route::get('/upload', 'TrackController@uploadPage');
+    Route::post('/upload', 'TrackController@store');
 });
 // Route::get('/dubz', 'TrackController@index');
 Route::post('/track', 'TrackController@store');
