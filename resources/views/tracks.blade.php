@@ -25,7 +25,7 @@
                         </audio>
                     </div>
                     <div class="three columns">
-                        <form action="/dubz/dowload/{{ $track->id }}">
+                        <form action="/dubz/download/{{ $track->id }}">
                             <input type="submit" value="Download">
                         </form>
                     </div>
