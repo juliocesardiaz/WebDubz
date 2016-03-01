@@ -16,7 +16,7 @@ class TrackController extends Controller
      *
      */
       protected $tracks;
-    
+
     /**
      *
      */
@@ -30,18 +30,27 @@ class TrackController extends Controller
      public function uploadPage()
      {
            return view('upload');
-     } 
-     
+     }
+
      /**
       *
       */
      public function index(Request $request)
      {
+           $tracks = Track::all();
+           return view('tracks', ['tracks' => $tracks,]);
+     }
+
+     /**
+      *
+      */
+     public function trax(Request $request)
+     {
            $tracks = DB::table('tracks')->where('converted', '=', 1)->orderBy('id', 'desc')->get();
-           
+
            return response()->json(['tracks' => $tracks], 200);
      }
-    
+
     /**
      *
      */
@@ -52,16 +61,16 @@ class TrackController extends Controller
               'artist' => 'required|max:255',
               'track' => 'required',
           ]);
-              
+
           if ($request->file('track')->isValid()) {
             $temp_filename = str_replace(" ", "", strtolower($request->input('artist')) . "_" .strtolower($request->input('title')));
             $file_name = $temp_filename . "_hq." . $request->file('track')->getClientOriginalExtension();
             $hq_path = '/tracks/hq/';
             $lq_path = '/tracks/lq/' . $temp_filename . "_lq." . 'mp3';
             $request->file('track')->move(public_path() . $hq_path, $file_name);
-            $hq_path .= $file_name;              
+            $hq_path .= $file_name;
           }
-          
+
           $track = new Track;
           $track->title = $request->input('title');
           $track->artist = $request->input('artist');
@@ -73,16 +82,16 @@ class TrackController extends Controller
           $track->save();
           $job = (new ConvertHQTracks($track));
           $this->dispatch($job);
-          
+
           return redirect('api/v1/dubz');
       }
-      
+
       /**
       *
       */
-      public function download(Request $request, $trackId)
+      public function download(Request $request, Track $track)
       {
-            $track = DB::table('tracks')->where('id', '=', $trackId)->get();
+            // $track = Track::find($id);
             return response()->download(public_path() . $track->path_hq);
       }
 }

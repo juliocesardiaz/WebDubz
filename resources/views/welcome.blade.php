@@ -19,7 +19,7 @@
                     </form>
                 </div>
                 <div class="six columns">
-                    <form action="/api/v1/dubz">
+                    <form action="/dubz">
                         <input type="submit" value="Explore Dubz">
                     </form>
                 </div>
