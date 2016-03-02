@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Log;
+use Session;
 use App\Track;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -52,6 +53,14 @@ class TrackController extends Controller
            return response()->json(['tracks' => $tracks], 200);
      }
 
+     /**
+     *
+     */
+     public function getCSRF(Request $request)
+     {
+           return Session::token();
+     }
+
     /**
      *
      */
@@ -93,7 +102,8 @@ class TrackController extends Controller
       public function download(Request $request, Track $track)
       {
             // $track = Track::find($id);
-            // Log::error('Attempting to download file:');
+            Log::error('Attempting to download file:');
             return response()->download(public_path() . $track->path_hq);
       }
+
 }
