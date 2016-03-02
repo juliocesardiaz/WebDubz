@@ -102,7 +102,7 @@ class TrackController extends Controller
       public function download(Request $request, Track $track)
       {
             // $track = Track::find($id);
-            Log::error('Attempting to download file:');
+            
             return response()->download(public_path() . $track->path_hq);
       }
 
