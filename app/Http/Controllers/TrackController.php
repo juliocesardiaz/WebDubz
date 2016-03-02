@@ -93,7 +93,7 @@ class TrackController extends Controller
           $job = (new ConvertHQTracks($track));
           $this->dispatch($job);
 
-          return redirect('api/v1/dubz');
+         //  return redirect('api/v1/dubz');
       }
 
       /**
