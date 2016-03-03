@@ -31,8 +31,8 @@ class DeleteTracks extends Job implements SelfHandling, ShouldQueue
      */
     public function handle()
     {
-        $files = [public_path() . $this->track->path_hq, public_path() . $this->track->path_lq];
-        Storage::delete($files);
-        $this->track->delete();
+      //   $files = [public_path() . $this->track->path_hq, public_path() . $this->track->path_lq];
+      //   Storage::delete($files);
+      //   $this->track->delete();
     }
 }

@@ -95,6 +95,24 @@ class TrackController extends Controller
 
          //  return redirect('api/v1/dubz');
       }
+      
+      /**
+      *
+      */
+      public function checkDownload(Request $request, Track $track)
+      {
+         $app = app();
+         $message_return = $app->make('stdClass');
+         if($track->max_downloads > $track->current_downloads) {
+            $track->current_downloads += 1;
+            $track->save();
+            $message_return->message = "success";
+            return response()->json(['message_return' => $message_return], 200);
+         } else {
+            $message_return->message = "failure";
+            return response()->json(['message_return' => $message_return], 200);
+         }
+      }
 
       /**
       *
@@ -102,7 +120,6 @@ class TrackController extends Controller
       public function download(Request $request, Track $track)
       {
             // $track = Track::find($id);
-            
             return response()->download(public_path() . $track->path_hq);
       }
 
