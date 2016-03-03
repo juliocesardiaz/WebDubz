@@ -1,4 +1,4 @@
-# Webdubz
+# WebdubzAPI v1.00
 
 ##### A Web App to share music.
 
@@ -14,11 +14,6 @@ The idea of **Webdubz** is to help users share demos, edits and remixes also kno
 * Allows users to download music.
 
 ### Future functions to be added
-* Setup Laravel Jobs to handle music file converting.
-* Setup download limit, so that users can set how many 
-  dowloads a song can have before being deleted.
-* Convert to API backend and an AngularJS front end.
-* Add [WavesurferJS](http://wavesurfer-js.org) to represent audio wavforms.
 
 
 ## Setup
