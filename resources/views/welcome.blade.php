@@ -12,18 +12,6 @@
             <div class="content">
                 <div class="title">Webdubz</div>
             </div>
-            <div class="row">
-                <div class="six columns">
-                    <form action="/upload">
-                        <input type="submit" value="Upload a Track">
-                    </form>
-                </div>
-                <div class="six columns">
-                    <form action="/dubz">
-                        <input type="submit" value="Explore Dubz">
-                    </form>
-                </div>
-            </div>
         </div>
     </body>
 </html>

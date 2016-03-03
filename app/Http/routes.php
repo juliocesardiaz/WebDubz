@@ -21,7 +21,4 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('/checkdownload/{track}', 'TrackController@checkDownload');
     Route::get('/download/{track}', 'TrackController@download');
 });
-Route::get('/dubz', 'TrackController@index');
-Route::post('/track', 'TrackController@store');
-Route::get('/upload', 'TrackController@uploadPage');
-Route::get('/dubz/download/{track}', 'TrackController@download');
+
