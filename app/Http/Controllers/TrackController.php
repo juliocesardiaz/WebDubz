@@ -9,6 +9,7 @@ use App\Track;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Jobs\ConvertHQTracks;
+use App\Jobs\DeleteTracks;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -110,6 +111,8 @@ class TrackController extends Controller
             return response()->json(['message_return' => $message_return], 200);
          } else {
             $message_return->message = "failure";
+            $job = (new DeleteTracks($track));
+            $this->dispatch($job);
             return response()->json(['message_return' => $message_return], 200);
          }
       }

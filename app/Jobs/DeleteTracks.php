@@ -2,17 +2,13 @@
 
 namespace App\Jobs;
 
-use Storage;
 use App\Track;
 use App\Jobs\Job;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Symfony\Component\Process\Process;
 
-class DeleteTracks extends Job implements SelfHandling, ShouldQueue
+class DeleteTracks extends Job implements SelfHandling
 {
-    use InteractsWithQueue, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -31,8 +27,9 @@ class DeleteTracks extends Job implements SelfHandling, ShouldQueue
      */
     public function handle()
     {
-      //   $files = [public_path() . $this->track->path_hq, public_path() . $this->track->path_lq];
-      //   Storage::delete($files);
-      //   $this->track->delete();
+        $command = "rm -rf " . public_path() . $this->track->path_hq . " " . public_path() . $this->track->path_lq;
+        $delete = new Process($command);
+        $delete->run();
+        $this->track->delete();
     }
 }
