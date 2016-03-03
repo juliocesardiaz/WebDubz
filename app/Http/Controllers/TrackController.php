@@ -74,7 +74,7 @@ class TrackController extends Controller
           ]);
 
           if ($request->file('track')->isValid()) {
-            $temp_filename = str_replace(" ", "", strtolower($request->input('artist')) . "_" .strtolower($request->input('title')));
+            $temp_filename = cleanFileName(strtolower($request->input('artist')) . "_" .strtolower($request->input('title')));
             $file_name = $temp_filename . "_hq." . $request->file('track')->getClientOriginalExtension();
             $hq_path = '/tracks/hq/';
             $lq_path = '/tracks/lq/' . $temp_filename . "_lq." . 'mp3';
@@ -124,6 +124,12 @@ class TrackController extends Controller
       {
             // $track = Track::find($id);
             return response()->download(public_path() . $track->path_hq);
+      }
+      
+      public function cleanFileName($string) 
+      {
+         $string = str_replace(' ', '', $string); 
+         return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
       }
 
 }
