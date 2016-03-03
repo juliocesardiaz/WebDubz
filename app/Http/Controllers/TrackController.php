@@ -74,7 +74,7 @@ class TrackController extends Controller
           ]);
 
           if ($request->file('track')->isValid()) {
-            $temp_filename = cleanFileName(strtolower($request->input('artist')) . "_" .strtolower($request->input('title')));
+            $temp_filename = $this->cleanFileName(strtolower($request->input('artist')) . "_" .strtolower($request->input('title')));
             $file_name = $temp_filename . "_hq." . $request->file('track')->getClientOriginalExtension();
             $hq_path = '/tracks/hq/';
             $lq_path = '/tracks/lq/' . $temp_filename . "_lq." . 'mp3';
