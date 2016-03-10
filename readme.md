@@ -9,18 +9,12 @@
 The idea of **Webdubz** is to help users share demos, edits and remixes also known as "Dubs". 
 
 ### Key characteristics
-* Mobile responsive web application.
-* Allows users to upload music and share with the internet.
-* Allows users to download music.
+* Allows front end app to upload music and share with the internet.
+* Allows front end app to download music.
+* Allows users to set download limits.
 
 ### Future functions to be added
-<<<<<<< HEAD
-=======
-* Setup download limit, so that users can set how many 
-  dowloads a song can have before being deleted.
-* Convert to API backend and an AngularJS front end.
-* Add [WavesurferJS](http://wavesurfer-js.org) to represent audio wavforms.
->>>>>>> webdubz-api-v1
+* Cookies so API remembers users so user can't donwload same song twice.
 
 
 ## Setup
@@ -34,7 +28,7 @@ The idea of **Webdubz** is to help users share demos, edits and remixes also kno
 
 ## Technologies used
 
-PHP, Laravel, FFmpeg, HTML, CSS, JavaScript, Bootstrap, MySQL.
+PHP, Laravel, FFmpeg, MySQL.
 
 ## Legal
 

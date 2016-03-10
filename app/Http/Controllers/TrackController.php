@@ -21,31 +21,20 @@ class TrackController extends Controller
       protected $tracks;
 
     /**
+     * Welcome page
      *
+     * @return welcome.blade.php 
      */
      public function welcome()
      {
            return view('welcome');
      }
-    /**
-     *
-     */
-     public function uploadPage()
-     {
-           return view('upload');
-     }
 
      /**
+      * Returns a json response with the list of tracks ordered by time added
       *
-      */
-     public function index(Request $request)
-     {
-           $tracks = Track::all();
-           return view('tracks', ['tracks' => $tracks,]);
-     }
-
-     /**
-      *
+      * @var \Request
+      * @return json
       */
      public function trax(Request $request)
      {
@@ -55,7 +44,9 @@ class TrackController extends Controller
      }
 
      /**
-     *
+     * Returns a CSRF token TODO: add a way to use this and make sure user doesn't download a song more than once
+     * 
+     * @return \Session
      */
      public function getCSRF(Request $request)
      {
@@ -63,7 +54,10 @@ class TrackController extends Controller
      }
 
     /**
+     * Takes a POST request and stores the track information in the database and the file into the filesystem
+     * it then sends a Job to the Queue, which is to make a low quality version of the file for streaming.
      *
+     * @var \Request
      */
       public function store(Request $request)
       {
@@ -93,12 +87,13 @@ class TrackController extends Controller
           $track->save();
           $job = (new ConvertHQTracks($track));
           $this->dispatch($job);
-
-         //  return redirect('api/v1/dubz');
       }
       
       /**
+      * Checks to see if there are any dowloads let on a specific track. If not it send said track to a Job to be deleted.
       *
+      * @var \Request, \Track
+      * @return json
       */
       public function checkDownload(Request $request, Track $track)
       {
@@ -118,7 +113,10 @@ class TrackController extends Controller
       }
 
       /**
+      * Downloads File 
       *
+      * @var \Request, \Track
+      * @return json
       */
       public function download(Request $request, Track $track)
       {
@@ -126,6 +124,12 @@ class TrackController extends Controller
             return response()->download(public_path() . $track->path_hq);
       }
       
+      /**
+      * Cleans string so it can be safly stored into the files.
+      *
+      * @var string 
+      * @return string
+      */
       public function cleanFileName($string) 
       {
          $string = str_replace(' ', '', $string); 

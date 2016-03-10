@@ -21,7 +21,7 @@ class DeleteTracks extends Job implements SelfHandling
     }
 
     /**
-     * Execute the job.
+     * Job to delete Tracks from filesystem and database.
      *
      * @return void
      */

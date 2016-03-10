@@ -21,7 +21,8 @@ class ConvertHQTracks extends Job implements SelfHandling
     }
 
     /**
-     * Execute the job.
+     * Job that uses FFmeg to convert the music file into a 128kbps version for streaming.
+     *
      *
      * @return void
      */
