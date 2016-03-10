@@ -3,7 +3,13 @@
 Homestead.yaml
 Homestead.json
 .env
+.elasticbeanstalk/
 /public/tracks/hq/*
 !/public/tracks/hq/*.txt
 /public/tracks/lq/*
 !/public/tracks/lq/*.txt
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

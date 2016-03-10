@@ -13,8 +13,12 @@
 
 Route::get('/', 'TrackController@welcome');
 
-//Track Routes... 
-Route::get('/dubz', 'TrackController@index');
-Route::post('/track', 'TrackController@store');
-Route::get('/upload', 'TrackController@uploadPage');
-Route::get('/dubz/dowload/{track}', 'TrackController@download');
+//Track Routes...
+Route::group(['prefix' => 'api/v1'], function () {
+    Route::get('/dubz', 'TrackController@trax');
+    Route::post('/upload', 'TrackController@store');
+    Route::get('/csrf', 'TrackController@getCSRF');
+    Route::get('/checkdownload/{track}', 'TrackController@checkDownload');
+    Route::get('/download/{track}', 'TrackController@download');
+});
+

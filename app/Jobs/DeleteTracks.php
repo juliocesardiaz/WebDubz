@@ -2,14 +2,14 @@
 
 namespace App\Jobs;
 
-use Log;
 use App\Track;
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Symfony\Component\Process\Process;
 
-class ConvertHQTracks extends Job implements SelfHandling
+class DeleteTracks extends Job implements SelfHandling
 {
+
     /**
      * Create a new job instance.
      *
@@ -27,10 +27,9 @@ class ConvertHQTracks extends Job implements SelfHandling
      */
     public function handle()
     {
-        $command = '/usr/bin/ffmpeg -i  '. public_path() . $this->track->path_hq . ' -vn -ar 44100 -ac 2 -ab 128k -f mp3 ' . public_path() . $this->track->path_lq;
-        $convert = new Process($command);
-        $convert->run();
-        $this->track->converted = 1;
-        $this->track->save();
+        $command = "rm -rf " . public_path() . $this->track->path_hq . " " . public_path() . $this->track->path_lq;
+        $delete = new Process($command);
+        $delete->run();
+        $this->track->delete();
     }
 }
